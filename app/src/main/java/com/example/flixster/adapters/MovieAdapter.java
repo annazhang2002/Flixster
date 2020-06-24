@@ -18,6 +18,8 @@ import com.example.flixster.models.Movie;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     // need context on where this adapter is constructed from
     Context context;
@@ -78,6 +80,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview.setText(movie.getOverview());
             Glide.with(context)
                     .load(movie.getPosterPath())
+                    .transform(new RoundedCornersTransformation(30, 10))
                     .placeholder(R.drawable.flicks_movie_placeholder)
                     .into(ivPoster);
         }
