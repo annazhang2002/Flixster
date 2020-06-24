@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 * [X] For each movie displayed, user can see the following details:
   * [X] Title, Poster Image, Overview (Portrait mode)
   * [X] Title, Backdrop Image, Overview (Landscape mode)
-* [ ] Allow user to view details of the movie including ratings and popularity within a separate activity
+* [X] Allow user to view details of the movie including ratings and popularity within a separate activity
 
 The following **stretch** features are implemented:
 
