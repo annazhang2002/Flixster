@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView tvOverview;
     RatingBar rbVoteAverage;
     ImageView ivVideo;
+    ImageView playBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +38,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvOverview = findViewById(R.id.tvOverview);
         rbVoteAverage = findViewById(R.id.rbVoteAverage);
         ivVideo = findViewById(R.id.ivVideo);
+        playBtn = findViewById(R.id.playBtn);
+
+
 
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
+        Log.d("MovieDetailsActivity", String.format("getVideoKey: " + movie.getVideoKey()));
+        if (movie.getVideoKey() != null) {
+            Glide.with(this)
+                    .load(R.drawable.play_button)
+                    .into(playBtn);
+        }
+
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
+
+        Log.d("MovieDetailsActivity", "BACKDROP Path: " + movie.getBackdropPath());
 
         Glide.with(this)
                 .load(movie.getBackdropPath())

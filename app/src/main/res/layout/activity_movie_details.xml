@@ -73,5 +73,5 @@
         android:layout_marginEnd="46dp"
         android:layout_marginBottom="50dp"
         android:background="#00651414"
-        app:srcCompat="@drawable/play_button" />
+        tools:srcCompat="@drawable/play_button" />
 </RelativeLayout>

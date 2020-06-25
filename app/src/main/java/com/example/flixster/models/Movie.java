@@ -1,6 +1,7 @@
 package com.example.flixster.models;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
@@ -53,6 +54,7 @@ public class Movie {
     }
 
     public void retrieveKey( Integer id ) {
+
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(MOVIE_VIDEO_URL, new JsonHttpResponseHandler() {
             @Override
@@ -62,11 +64,13 @@ public class Movie {
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
-                    videoKey = results.getJSONObject(0).getString("key");
+                    if (results.getJSONObject(0).getString("site") == "Youtube") {
+                        videoKey = results.getJSONObject(0).getString("key");
+                    }
 
                     Log.i(TAG, "Video Key: " + videoKey);
                 } catch (JSONException e) {
-                    Log.e(TAG, "Hit json exception", e);
+                    Log.e(TAG, "Hit json exception ", e);
                     e.printStackTrace();
                 }
             }
@@ -94,7 +98,18 @@ public class Movie {
     }
 
     public String getBackdropPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+        Log.d("Movie", "getBackdropPath: " + backdropPath);
+        if (backdropPath != null && !backdropPath.isEmpty() && !backdropPath.equals("null")) {
+            Log.d("Movie", "HEree");
+            return String.format("https://image.tmdb.org/t/p/w342/%s", backdropPath);
+
+        } else {
+            Log.d("Movie", "there");
+            return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+
+        }
+
+
     }
 
     public String getPosterPath() {
