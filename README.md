@@ -26,6 +26,8 @@ The following **additional** features are implemented:
 
 * [X] Added a play button over the backdrop image on the details screen to single to the user they can tap for a video
 * [X] Created a secrets.xml file to store the API keys
+* [X] Created landscape display for the details screen that shows the portrait image
+* [X] Only show the play button and allow the video to play only if the site is YouTube and the video key is valid
 
 ## Video Walkthrough
 
