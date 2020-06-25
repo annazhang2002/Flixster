@@ -49,11 +49,11 @@ public class Movie {
         MOVIE_VIDEO_URL += id + "/videos?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "Movie Video Url" + MOVIE_VIDEO_URL);
 
-        retrieveKey(id);
+        retrieveKey();
 
     }
 
-    public void retrieveKey( Integer id ) {
+    public void retrieveKey() {
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(MOVIE_VIDEO_URL, new JsonHttpResponseHandler() {
@@ -64,11 +64,14 @@ public class Movie {
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
-                    if (results.getJSONObject(0).getString("site") == "Youtube") {
+//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).toString());
+//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).getString("site"));
+
+                    if (results.getJSONObject(0).getString("site").equals("YouTube")) {
                         videoKey = results.getJSONObject(0).getString("key");
                     }
 
-                    Log.i(TAG, "Video Key: " + videoKey);
+                    Log.i(TAG, "retrieve Video Key: " + videoKey);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception ", e);
                     e.printStackTrace();

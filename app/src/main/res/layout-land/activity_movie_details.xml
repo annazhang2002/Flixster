@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#575757"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvOverview"
+        android:layout_width="574dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/rbVoteAverage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="9dp"
+        android:layout_toEndOf="@+id/ivVideo"
+        android:textColor="#FFFFFF"
+        tools:text="In a suburban fantasy world, two teenage elf brothers embark on an extraordinary quest to discover if there is still a little magic left out there." />
+
+    <RatingBar
+        android:id="@+id/rbVoteAverage"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/ivVideo"
+        android:numStars="5"
+        android:padding="0dp"
+        android:stepSize="0.5" />
+
+    <ImageView
+        android:id="@+id/ivVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/playBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ivVideo"
+        android:layout_alignTop="@+id/ivVideo"
+        android:layout_alignEnd="@+id/ivVideo"
+        android:layout_alignBottom="@+id/ivVideo"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="57dp"
+        app:srcCompat="@drawable/play_button" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/ivVideo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        tools:text="Onward" />
+</RelativeLayout>

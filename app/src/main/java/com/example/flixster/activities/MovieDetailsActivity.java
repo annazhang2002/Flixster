@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,23 +46,41 @@ public class MovieDetailsActivity extends AppCompatActivity {
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
-        Log.d("MovieDetailsActivity", String.format("getVideoKey: " + movie.getVideoKey()));
-        if (movie.getVideoKey() != null) {
-            Glide.with(this)
-                    .load(R.drawable.play_button)
-                    .into(playBtn);
-        }
-
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
 
         Log.d("MovieDetailsActivity", "BACKDROP Path: " + movie.getBackdropPath());
 
+        String imgUrl;
+        int placeholderUrl;
+
+        int orientation = getResources().getConfiguration().orientation;
+        // if phone is in landscape
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            imgUrl = movie.getBackdropPath();
+            placeholderUrl = R.drawable.flicks_backdrop_placeholder;
+        } else {
+            imgUrl = movie.getPosterPath();
+            placeholderUrl =  R.drawable.flicks_movie_placeholder;
+        }
+
+
         Glide.with(this)
-                .load(movie.getBackdropPath())
+                .load(imgUrl)
                 .transform(new RoundedCornersTransformation(30, 10))
-                .placeholder(R.drawable.flicks_backdrop_placeholder)
+                .placeholder(placeholderUrl)
                 .into(ivVideo);
+
+        Log.d("MovieDetailsActivity", String.format("getVideoKey: " + movie.getVideoKey() + " for " + movie.getTitle()));
+        if (movie.getVideoKey() != null && !movie.getVideoKey().isEmpty() && !movie.getVideoKey().equals("null")) {
+            Glide.with(this)
+                    .load(R.drawable.play_button)
+                    .into(playBtn);
+        } else {
+            Glide.with(this)
+                    .load(R.drawable.none)
+                    .into(playBtn);
+        }
 
         float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
@@ -71,7 +90,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ivVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("MovieDetailsActivity", "onClickVideo");
+                Log.d("MovieDetailsActivity", "onClickVideo: " + movie.getTitle());
                 Context context = getApplicationContext();
                 Intent intent = new Intent(context, MovieTrailerActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

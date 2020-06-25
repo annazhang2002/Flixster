@@ -62,8 +62,8 @@
 
     <ImageView
         android:id="@+id/playBtn"
-        android:layout_width="38dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivVideo"
         android:layout_alignTop="@+id/ivVideo"
         android:layout_alignEnd="@+id/ivVideo"
