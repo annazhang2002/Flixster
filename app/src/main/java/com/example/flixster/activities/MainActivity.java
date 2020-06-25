@@ -1,4 +1,4 @@
-package com.example.flixster;
+package com.example.flixster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.flixster.R;
 import com.example.flixster.adapters.MovieAdapter;
 import com.example.flixster.models.Movie;
 
@@ -23,7 +24,8 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
+
 
     // tag constant makes it easy to log data
     public static final String TAG = "MainActivity";
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        Log.d("MainActivity", "NOW_PLAYING_URL: " + NOW_PLAYING_URL + getString(R.string.movies_api_key)) ;
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movies = new ArrayList<>();
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+        client.get(NOW_PLAYING_URL + getString(R.string.movies_api_key), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
