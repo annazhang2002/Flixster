@@ -28,6 +28,7 @@ The following **additional** features are implemented:
 * [X] Created a secrets.xml file to store the API keys
 * [X] Created landscape display for the details screen that shows the portrait image
 * [X] Only show the play button and allow the video to play only if the site is YouTube and the video key is valid
+* [X] Added release date to the details screen
 
 ## Video Walkthrough
 
