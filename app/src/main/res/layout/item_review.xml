@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="0dp"
+    android:background="#292929"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Author"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAuthor"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:text="Animation has such an important job. The messages I was talking about earlier are not just intended to teach kids things - we learn from them too. I think that's what made 'Onward' a little disappointing: I didn't come out having learned something new in the context of my adult life. Nonetheless, it's still a lovely allegorical tale that promotes brotherhood, adventure and generosity. Animation's got a big duty of shaping up future generations from a young age, and they can't always deliver the goods for all. With that, I sign off - eagerly awaiting Pixar's next drop where, fingers crossed, I get to discover something new too... don't forget the big kids, Pixar.\r\n- Lily Meek\r\n\r\nRead Lily's full article...\r\nhttps://www.maketheswitch.com.au/article/review-onward-not-the-fairytale-pixar-film-we-wanted"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

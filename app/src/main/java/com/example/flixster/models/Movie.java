@@ -35,6 +35,7 @@ public class Movie implements Comparable<Movie>{
     Integer id;
     String videoKey;
     String releaseDate;
+    Integer numReviews;
 
     String allGenresString;
     String[] recs = new String[3];
@@ -59,6 +60,8 @@ public class Movie implements Comparable<Movie>{
 
         getGenres();
         retrieveRecs();
+        retrieveNumReviews();
+
 
     }
 
@@ -81,6 +84,30 @@ public class Movie implements Comparable<Movie>{
                     }
 
                     Log.i(TAG, "retrieve Video Key: " + videoKey);
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception ", e);
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "onFailure");
+            }
+        });
+    }
+
+    public void retrieveNumReviews() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String REVIEW_URL = "https://api.themoviedb.org/3/movie/" + id + "/reviews?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1";
+        client.get(REVIEW_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+
+                    numReviews = jsonObject.getInt("total_results");
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception ", e);
                     e.printStackTrace();
@@ -171,6 +198,10 @@ public class Movie implements Comparable<Movie>{
         return recs;
     }
 
+    public Integer getNumReviews() {
+        return numReviews;
+    }
+
     public String getAllGenresString() {
         Log.d("Movie", "getAllGenresString: " + allGenresString);
 
@@ -194,6 +225,10 @@ public class Movie implements Comparable<Movie>{
 
     public Integer getVoteCount() {
         return vote_count;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getBackdropPath() {

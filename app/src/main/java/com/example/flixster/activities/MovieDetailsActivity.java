@@ -152,5 +152,25 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        tvStarInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("MovieDetailsActivity", "onClickRatingBar: " + movie.getTitle());
+
+                if (movie.getNumReviews() != 0) {
+                    Context context = getApplicationContext();
+                    Intent intent = new Intent(context, ReviewActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                Log.d("MovieDetailsActivity", "Video Key: " + movie.getVideoKey());
+                    intent.putExtra("id", Parcels.wrap(movie.getId()));
+                    intent.putExtra("title", Parcels.wrap(movie.getTitle()));
+                    context.startActivity(intent);
+
+                }
+
+
+            }
+        });
     }
 }
