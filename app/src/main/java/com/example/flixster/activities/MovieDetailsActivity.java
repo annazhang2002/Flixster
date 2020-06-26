@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import com.example.flixster.databinding.ActivityMovieDetailsBinding;
 import com.example.flixster.models.Movie;
 
 import org.parceler.Parcels;
+
+import java.util.ArrayList;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -33,6 +37,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView tvRelease;
     TextView tvStarInfo;
     TextView tvGenres;
+    ImageView[] recs = new ImageView[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvRelease = binding.tvRelease;
         tvStarInfo = binding.tvStarInfo;
         tvGenres = binding.tvGenres;
+        recs[0] = binding.ivRec1;
+        recs[1] = binding.ivRec2;
+        recs[2] = binding.ivRec3;
 
 
 
@@ -108,6 +116,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
 
         getSupportActionBar().setTitle(movie.getTitle() + " Movie Details");
+
+        String[] recPaths = movie.getRecs();
+        for (int i = 0; i < recs.length; i++) {
+            Log.d("MovieDetailsActivity", "recPaths[" + i + "] : " + recPaths[i]);
+            if (recPaths[i] != null) {
+                Glide.with(this)
+                        .load(recPaths[i])
+                        .transform(new RoundedCornersTransformation(30, 10))
+                        .placeholder(R.drawable.flicks_movie_placeholder)
+                        .into(recs[i]);
+            }
+
+        }
 
         ivVideo.setOnClickListener(new View.OnClickListener() {
             @Override

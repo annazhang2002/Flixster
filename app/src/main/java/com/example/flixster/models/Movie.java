@@ -37,6 +37,7 @@ public class Movie {
     String releaseDate;
 
     String allGenresString;
+    String[] recs = new String[3];
 
 
 
@@ -56,15 +57,15 @@ public class Movie {
         MOVIE_VIDEO_URL += id + "/videos?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "Movie Video Url" + MOVIE_VIDEO_URL);
 
-        retrieveKey();
-
-        getGenres();
+        AsyncHttpClient client = new AsyncHttpClient();
+        retrieveKey(client);
+        getGenres(client);
+        retrieveRecs(client);
 
     }
 
-    public void retrieveKey() {
+    public void retrieveKey(AsyncHttpClient client) {
 
-        AsyncHttpClient client = new AsyncHttpClient();
         client.get(MOVIE_VIDEO_URL, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -94,12 +95,12 @@ public class Movie {
         });
     }
 
-    public void getGenres() {
+    public void getGenres(AsyncHttpClient client) {
 
         String MOVIE_DETAILS_URL = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "MOVIE DETAILS URL: " + MOVIE_DETAILS_URL);
 
-        AsyncHttpClient client = new AsyncHttpClient();
+
         client.get(MOVIE_DETAILS_URL, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -108,8 +109,6 @@ public class Movie {
                 try {
                     JSONArray genres = jsonObject.getJSONArray("genres");
                     Log.i(TAG, "Results: " + genres.toString());
-//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).toString());
-//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).getString("site"));
 
                     String genresString = "";
                     for (int i =0; i<genres.length() - 1; i++) {
@@ -130,6 +129,44 @@ public class Movie {
                 Log.d(TAG, "onFailure");
             }
         });
+    }
+
+    public void retrieveRecs(AsyncHttpClient client) {
+        String MOVIE_RECS_URL = "https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US&page=1";
+        Log.d("Movie", "MOVIE RECS URL: " + MOVIE_RECS_URL);
+
+
+        client.get(MOVIE_RECS_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray results = jsonObject.getJSONArray("results");
+                    Log.i(TAG, "Recs Results: " + results.toString());
+
+                    for (int i =0; i<3 && i< results.length(); i++) {
+//                        Log.i(TAG, "Recs " + i + ": " + results.getJSONObject(i).getString("poster_path"));
+                        recs[i] = "https://image.tmdb.org/t/p/w342" + results.getJSONObject(i).getString("poster_path");
+                        Log.d("Movie", "rec[i]: " + recs[i]);
+                    }
+
+                    Log.i(TAG, "return recs: " + recs.toString());
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception ", e);
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "onFailure");
+            }
+        });
+    }
+
+    public String[] getRecs() {
+        return recs;
     }
 
     public String getAllGenresString() {
