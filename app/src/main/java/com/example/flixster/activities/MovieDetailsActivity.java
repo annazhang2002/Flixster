@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixster.R;
+import com.example.flixster.databinding.ActivityMovieDetailsBinding;
 import com.example.flixster.models.Movie;
 
 import org.parceler.Parcels;
@@ -36,19 +37,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        // simple_activity.xml -> SimpleActivityBinding
+        ActivityMovieDetailsBinding binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
 
-        tvTitle = findViewById(R.id.tvTitle);
-        tvOverview = findViewById(R.id.tvOverview);
-        rbVoteAverage = findViewById(R.id.rbVoteAverage);
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
+
+        tvTitle = binding.tvTitle;
+        tvOverview = binding.tvOverview;
+        rbVoteAverage = binding.rbVoteAverage;
 
         rbVoteAverage.setIsIndicator(true);
 
-        ivVideo = findViewById(R.id.ivVideo);
-        playBtn = findViewById(R.id.playBtn);
-        tvRelease = findViewById(R.id.tvRelease);
-        tvStarInfo = findViewById(R.id.tvStarInfo);
-        tvGenres = findViewById(R.id.tvGenres);
+        ivVideo = binding.ivVideo;
+        playBtn = binding.playBtn;
+        tvRelease = binding.tvRelease;
+        tvStarInfo = binding.tvStarInfo;
+        tvGenres = binding.tvGenres;
 
 
 
