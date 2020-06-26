@@ -20,7 +20,7 @@ import java.util.List;
 import okhttp3.Headers;
 
 @Parcel
-public class Movie {
+public class Movie implements Comparable<Movie>{
 
     private static final String TAG = "Movie";
 
@@ -231,5 +231,10 @@ public class Movie {
     public String getReleaseDate() {
         return "Release Date: " + releaseDate;
 
+    }
+
+    @Override
+    public int compareTo(Movie movie) {
+        return movie.vote_average.compareTo(vote_average);
     }
 }

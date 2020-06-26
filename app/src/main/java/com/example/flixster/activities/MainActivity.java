@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -15,11 +16,13 @@ import com.example.flixster.adapters.MovieAdapter;
 import com.example.flixster.databinding.ActivityMainBinding;
 import com.example.flixster.models.Movie;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.Headers;
@@ -27,12 +30,13 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
-
+    public static final String UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=";
 
     // tag constant makes it easy to log data
     public static final String TAG = "MainActivity";
 
     List<Movie> movies;
+    final String[] url = {NOW_PLAYING_URL};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +47,57 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        getSupportActionBar().hide();
 
-        Log.d("MainActivity", "NOW_PLAYING_URL: " + NOW_PLAYING_URL + getString(R.string.movies_api_key)) ;
 
-        RecyclerView rvMovies = binding.rvMovies;
+
+        final RecyclerView rvMovies = binding.rvMovies;
         movies = new ArrayList<>();
+        final Button btnToggle = binding.btnToggle;
+        btnToggle.setText("SHOW UPCOMING MOVIES");
 
         // Create the adapter
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
 
+        adapterUpdate(movieAdapter, rvMovies, url);
+
+
+        btnToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (url[0] == NOW_PLAYING_URL) {
+                    Log.d(TAG, "onClickBtnToggle - switch to upcoming");
+                    url[0] = UPCOMING_URL;
+                    apiCall(movieAdapter, url);
+                    btnToggle.setText("SHOW NOW PLAYING MOVIES");
+                } else {
+                    Log.d(TAG, "onClickBtnToggle - switch to now playing");
+                    url[0] = UPCOMING_URL;
+                    apiCall(movieAdapter, url);
+                    btnToggle.setText("SHOW UPCOMING MOVIES");
+                }
+
+            }
+        });
+
+    }
+
+    @NotNull
+    private void adapterUpdate(MovieAdapter movieAdapter, RecyclerView rvMovies, String[] url) {
         // Set the adapter on the recycler view
         rvMovies.setAdapter(movieAdapter);
 
         // Set a Layout Manager on the RV
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
+        apiCall(movieAdapter, url);
+    }
+
+
+    public void apiCall(final MovieAdapter movieAdapter, String[] url) {
+
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_URL + getString(R.string.movies_api_key), new JsonHttpResponseHandler() {
+        client.get(url[0] + getString(R.string.movies_api_key), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
@@ -68,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
 
+                    movies.clear();
+
                     movies.addAll(Movie.fromJsonArray(results));
+                    Collections.sort(movies);
+
+                    Log.d(TAG, "Notify Adapter that data changed");
 
                     movieAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Movies: " + movies.size());

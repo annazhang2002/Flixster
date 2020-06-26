@@ -31,6 +31,8 @@ The following **additional** features are implemented:
 * [X] Added release date to the details screen
 * [X] Added genres onto details screen
 * [X] Shows the number of reviews on the movie; if it is zero, tells the user there are no reviews yet and doesn't show the vote average
+* [X] Used custom comparator to sort the now playing movies from highest rated to lowest rated
+* [X] Added button on toolbar to allow user to switch between list of "now playing" movies and "upcoming" movies
 
 ## Video Walkthrough
 
