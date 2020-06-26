@@ -57,14 +57,13 @@ public class Movie {
         MOVIE_VIDEO_URL += id + "/videos?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "Movie Video Url" + MOVIE_VIDEO_URL);
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        retrieveKey(client);
-        getGenres(client);
-        retrieveRecs(client);
+        getGenres();
+        retrieveRecs();
 
     }
 
-    public void retrieveKey(AsyncHttpClient client) {
+    public void retrieveKey() {
+        AsyncHttpClient client = new AsyncHttpClient();
 
         client.get(MOVIE_VIDEO_URL, new JsonHttpResponseHandler() {
             @Override
@@ -95,7 +94,8 @@ public class Movie {
         });
     }
 
-    public void getGenres(AsyncHttpClient client) {
+    public void getGenres() {
+        AsyncHttpClient client = new AsyncHttpClient();
 
         String MOVIE_DETAILS_URL = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "MOVIE DETAILS URL: " + MOVIE_DETAILS_URL);
@@ -131,7 +131,9 @@ public class Movie {
         });
     }
 
-    public void retrieveRecs(AsyncHttpClient client) {
+    public void retrieveRecs() {
+        AsyncHttpClient client = new AsyncHttpClient();
+
         String MOVIE_RECS_URL = "https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US&page=1";
         Log.d("Movie", "MOVIE RECS URL: " + MOVIE_RECS_URL);
 
@@ -171,6 +173,7 @@ public class Movie {
 
     public String getAllGenresString() {
         Log.d("Movie", "getAllGenresString: " + allGenresString);
+
         return allGenresString;
     }
 
@@ -221,6 +224,7 @@ public class Movie {
     }
 
     public String getVideoKey() {
+        retrieveKey();
         return videoKey;
     }
 
