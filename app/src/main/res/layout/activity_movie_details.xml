@@ -33,6 +33,7 @@
         android:layout_marginTop="6dp"
         android:numStars="5"
         android:padding="0dp"
+        android:saveEnabled="true"
         android:stepSize="0.5" />
 
     <TextView
@@ -81,4 +82,15 @@
         android:layout_marginTop="4dp"
         android:textColor="#FFFFFF"
         tools:text="Released 2020-05-15" />
+
+    <TextView
+        android:id="@+id/tvStarInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="47dp"
+        android:layout_toEndOf="@+id/rbVoteAverage"
+        android:textColor="#FFFFFF"
+        tools:text="4.5" />
 </RelativeLayout>

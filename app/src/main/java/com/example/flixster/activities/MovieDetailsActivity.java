@@ -30,6 +30,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ImageView ivVideo;
     ImageView playBtn;
     TextView tvRelease;
+    TextView tvStarInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);
         rbVoteAverage = findViewById(R.id.rbVoteAverage);
+
+        rbVoteAverage.setIsIndicator(true);
+
         ivVideo = findViewById(R.id.ivVideo);
         playBtn = findViewById(R.id.playBtn);
         tvRelease = findViewById(R.id.tvRelease);
+        tvStarInfo = findViewById(R.id.tvStarInfo);
 
 
 
@@ -86,6 +91,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
 
         float voteAverage = movie.getVoteAverage().floatValue();
+        tvStarInfo.setText(String.valueOf(voteAverage / 2.0f));
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
 
         getSupportActionBar().setTitle(movie.getTitle() + " Movie Details");
