@@ -31,6 +31,7 @@ public class Movie {
     String title;
     String overview;
     Double vote_average;
+    Integer vote_count;
     Integer id;
     String videoKey;
     String releaseDate;
@@ -48,6 +49,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         vote_average = jsonObject.getDouble("vote_average");
+        vote_count = jsonObject.getInt("vote_count");
         id = jsonObject.getInt("id");
         releaseDate = jsonObject.getString("release_date");
 
@@ -148,6 +150,10 @@ public class Movie {
 
     public Double getVoteAverage() {
         return vote_average;
+    }
+
+    public Integer getVoteCount() {
+        return vote_count;
     }
 
     public String getBackdropPath() {

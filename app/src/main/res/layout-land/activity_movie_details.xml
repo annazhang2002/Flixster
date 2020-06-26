@@ -23,9 +23,9 @@
         android:id="@+id/tvStarInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
+        android:layout_below="@+id/tvRelease"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/rbVoteAverage"
         android:textColor="#FFFFFF"
         tools:text="4.5" />

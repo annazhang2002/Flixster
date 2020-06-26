@@ -30,6 +30,7 @@ The following **additional** features are implemented:
 * [X] Only show the play button and allow the video to play only if the site is YouTube and the video key is valid
 * [X] Added release date to the details screen
 * [X] Added genres onto details screen
+* [X] Shows the number of reviews on the movie; if it is zero, tells the user there are no reviews yet and doesn't show the vote average
 
 ## Video Walkthrough
 

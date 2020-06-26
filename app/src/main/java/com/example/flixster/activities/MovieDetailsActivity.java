@@ -94,7 +94,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
 
         float voteAverage = movie.getVoteAverage().floatValue();
-        tvStarInfo.setText(String.valueOf(voteAverage / 2.0f));
+        if (voteAverage == 0) {
+            tvStarInfo.setText(movie.getVoteCount() + " Reviews");
+        } else {
+            tvStarInfo.setText(String.valueOf(voteAverage / 2.0f) + "\n" + movie.getVoteCount() + " Reviews");
+        }
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
 
         getSupportActionBar().setTitle(movie.getTitle() + " Movie Details");

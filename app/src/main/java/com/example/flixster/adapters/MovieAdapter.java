@@ -83,7 +83,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview() + "\n\nRating: " + (movie.getVoteAverage()/2.0f) + "/5 stars");
+            Integer voteCount = movie.getVoteCount();
+            if (voteCount == 0) {
+                tvOverview.setText(movie.getOverview() + "\n\nRating: " + "No reviews yet");
+            } else {
+                tvOverview.setText(movie.getOverview() + "\n\nRating: " + (movie.getVoteAverage()/2.0f) + "/5 stars");
+            }
+
             String imgUrl;
             int placeholderUrl;
 
