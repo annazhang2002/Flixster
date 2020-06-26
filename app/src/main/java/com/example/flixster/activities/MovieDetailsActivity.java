@@ -29,6 +29,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RatingBar rbVoteAverage;
     ImageView ivVideo;
     ImageView playBtn;
+    TextView tvRelease;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         rbVoteAverage = findViewById(R.id.rbVoteAverage);
         ivVideo = findViewById(R.id.ivVideo);
         playBtn = findViewById(R.id.playBtn);
+        tvRelease = findViewById(R.id.tvRelease);
 
 
 
@@ -48,6 +50,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
+        tvRelease.setText(movie.getReleaseDate());
 
         Log.d("MovieDetailsActivity", "BACKDROP Path: " + movie.getBackdropPath());
 

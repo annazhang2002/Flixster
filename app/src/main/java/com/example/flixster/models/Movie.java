@@ -33,6 +33,8 @@ public class Movie {
     Double vote_average;
     Integer id;
     String videoKey;
+    String releaseDate;
+
 
 
     // no-arg, empty constructor required for Parceler
@@ -45,6 +47,7 @@ public class Movie {
         overview = jsonObject.getString("overview");
         vote_average = jsonObject.getDouble("vote_average");
         id = jsonObject.getInt("id");
+        releaseDate = jsonObject.getString("release_date");
 
         MOVIE_VIDEO_URL += id + "/videos?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
         Log.d("Movie", "Movie Video Url" + MOVIE_VIDEO_URL);
@@ -129,5 +132,10 @@ public class Movie {
 
     public String getVideoKey() {
         return videoKey;
+    }
+
+    public String getReleaseDate() {
+        return "Release Date: " + releaseDate;
+
     }
 }

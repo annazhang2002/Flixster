@@ -8,9 +8,20 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/tvRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/ivVideo"
+        android:textColor="#FFFFFF"
+        tools:text="Released 2020-05-15" />
+
+    <TextView
         android:id="@+id/tvOverview"
         android:layout_width="574dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/rbVoteAverage"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
@@ -25,9 +36,10 @@
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
+        android:layout_below="@+id/tvRelease"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
         android:layout_toEndOf="@+id/ivVideo"
         android:numStars="5"
         android:padding="0dp"
