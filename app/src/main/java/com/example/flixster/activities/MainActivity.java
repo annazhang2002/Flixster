@@ -31,12 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
     public static final String UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=";
+    public static final String POPULAR_URL = "https://api.themoviedb.org/3/movie/popular?api_key=";
+
 
     // tag constant makes it easy to log data
     public static final String TAG = "MainActivity";
 
     List<Movie> movies;
     final String[] url = {NOW_PLAYING_URL};
+
+    Button btnToggle1;
+    Button btnToggle2;
+    Button btnToggle3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         final RecyclerView rvMovies = binding.rvMovies;
         movies = new ArrayList<>();
-        final Button btnToggle = binding.btnToggle;
-        btnToggle.setText("SHOW UPCOMING MOVIES");
+        btnToggle1 = binding.btnToggle;
+        btnToggle2 = binding.btnToggle2;
+        btnToggle3 = binding.btnToggle3;
+
 
         // Create the adapter
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
@@ -62,24 +70,37 @@ public class MainActivity extends AppCompatActivity {
         adapterUpdate(movieAdapter, rvMovies, url);
 
 
-        btnToggle.setOnClickListener(new View.OnClickListener() {
+        setBtnListeners(movieAdapter);
+
+    }
+
+    private void setBtnListeners(final MovieAdapter movieAdapter) {
+        btnToggle1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (url[0] == NOW_PLAYING_URL) {
-                    Log.d(TAG, "onClickBtnToggle - switch to upcoming");
-                    url[0] = UPCOMING_URL;
-                    apiCall(movieAdapter, url);
-                    btnToggle.setText("SHOW NOW PLAYING MOVIES");
-                } else {
-                    Log.d(TAG, "onClickBtnToggle - switch to now playing");
-                    url[0] = UPCOMING_URL;
-                    apiCall(movieAdapter, url);
-                    btnToggle.setText("SHOW UPCOMING MOVIES");
-                }
-
+                Log.d(TAG, "onClickBtnToggle - switch to now playing");
+                url[0] = NOW_PLAYING_URL;
+                apiCall(movieAdapter, url);
             }
         });
 
+        btnToggle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClickBtnToggle - switch to upcoming");
+                url[0] = UPCOMING_URL;
+                apiCall(movieAdapter, url);
+            }
+        });
+
+        btnToggle1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClickBtnToggle - switch to popular");
+                url[0] = POPULAR_URL;
+                apiCall(movieAdapter, url);
+            }
+        });
     }
 
     @NotNull
@@ -127,5 +148,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

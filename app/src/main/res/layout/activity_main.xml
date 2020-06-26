@@ -36,6 +36,36 @@
         app:titleTextColor="#FFFFFF" />
 
     <Button
+        android:id="@+id/btnToggle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rvMovies"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/btnToggle3"
+        android:background="#00FFFFFF"
+        android:text="Now Playing"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btnToggle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rvMovies"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/btnToggle"
+        android:background="#00FFFFFF"
+        android:text="Upcoming"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
+    <Button
         android:id="@+id/btnToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,9 +73,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
         android:background="#00FFFFFF"
-        android:text="Show Recent"
-        android:textColor="#FFFFFF" />
+        android:text="Popular"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
 </RelativeLayout>
