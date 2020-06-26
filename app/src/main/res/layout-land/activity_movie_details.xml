@@ -8,6 +8,18 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/tvGenres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOverview"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/ivVideo"
+        android:textColor="#FFFFFF"
+        tools:text="Genres: Drama, Comedy" />
+
+    <TextView
         android:id="@+id/tvStarInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

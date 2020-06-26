@@ -29,6 +29,7 @@ The following **additional** features are implemented:
 * [X] Created landscape display for the details screen that shows the portrait image
 * [X] Only show the play button and allow the video to play only if the site is YouTube and the video key is valid
 * [X] Added release date to the details screen
+* [X] Added genres onto details screen
 
 ## Video Walkthrough
 

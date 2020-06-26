@@ -35,6 +35,8 @@ public class Movie {
     String videoKey;
     String releaseDate;
 
+    String allGenresString;
+
 
 
     // no-arg, empty constructor required for Parceler
@@ -53,6 +55,8 @@ public class Movie {
         Log.d("Movie", "Movie Video Url" + MOVIE_VIDEO_URL);
 
         retrieveKey();
+
+        getGenres();
 
     }
 
@@ -86,6 +90,49 @@ public class Movie {
                 Log.d(TAG, "onFailure");
             }
         });
+    }
+
+    public void getGenres() {
+
+        String MOVIE_DETAILS_URL = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + "a07e22bc18f5cb106bfe4cc1f83ad8ed" + "&language=en-US";
+        Log.d("Movie", "MOVIE DETAILS URL: " + MOVIE_DETAILS_URL);
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(MOVIE_DETAILS_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONArray genres = jsonObject.getJSONArray("genres");
+                    Log.i(TAG, "Results: " + genres.toString());
+//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).toString());
+//                    Log.i(TAG, "JSONObject : " + results.getJSONObject(0).getString("site"));
+
+                    String genresString = "";
+                    for (int i =0; i<genres.length() - 1; i++) {
+                        genresString += genres.getJSONObject(i).getString("name") + ", ";
+                    }
+                    genresString += genres.getJSONObject(genres.length() - 1).getString("name");
+
+                    allGenresString = genresString;
+                    Log.i(TAG, "return genres: " + allGenresString);
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception ", e);
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.d(TAG, "onFailure");
+            }
+        });
+    }
+
+    public String getAllGenresString() {
+        Log.d("Movie", "getAllGenresString: " + allGenresString);
+        return allGenresString;
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {

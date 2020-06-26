@@ -31,6 +31,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ImageView playBtn;
     TextView tvRelease;
     TextView tvStarInfo;
+    TextView tvGenres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         playBtn = findViewById(R.id.playBtn);
         tvRelease = findViewById(R.id.tvRelease);
         tvStarInfo = findViewById(R.id.tvStarInfo);
+        tvGenres = findViewById(R.id.tvGenres);
 
 
 
@@ -56,6 +58,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         tvRelease.setText(movie.getReleaseDate());
+        tvGenres.setText("Genres: " + movie.getAllGenresString());
 
         Log.d("MovieDetailsActivity", "BACKDROP Path: " + movie.getBackdropPath());
 
