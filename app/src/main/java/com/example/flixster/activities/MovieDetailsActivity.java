@@ -111,7 +111,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
         if (voteAverage == 0) {
             tvStarInfo.setText(movie.getVoteCount() + " Reviews");
         } else {
-            tvStarInfo.setText(String.valueOf(voteAverage / 2.0f) + "\n" + movie.getVoteCount() + " Reviews");
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                tvStarInfo.setText(String.valueOf(voteAverage / 2.0f) + "\n" + movie.getVoteCount() + " Reviews");
+            } else {
+                tvStarInfo.setText(String.valueOf(voteAverage / 2.0f) + "\t\t\t\t\t           " + movie.getVoteCount() + " Reviews");
+
+            }
         }
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
 

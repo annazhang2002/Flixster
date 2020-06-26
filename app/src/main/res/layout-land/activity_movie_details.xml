@@ -7,25 +7,75 @@
     android:background="#575757"
     android:padding="20dp">
 
+    <ImageView
+        android:id="@+id/ivVideo"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
-        android:id="@+id/tvGenres"
+        android:id="@+id/tvRecommendations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOverview"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/tvGenres"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/ivVideo"
+        android:text="Recommendations"
         android:textColor="#FFFFFF"
-        tools:text="Genres: Drama, Comedy" />
+        android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivRec1"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRecommendations"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/ivVideo"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/ivRec2"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRecommendations"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/ivRec1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/ivRec3"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRecommendations"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/ivRec2"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvOverview"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/ivVideo"
+            android:textColor="#FFFFFF"
+            tools:text="Genres: Drama, Comedy" />
 
     <TextView
         android:id="@+id/tvStarInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvRelease"
+        android:layout_below="@+id/tvTitle"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/rbVoteAverage"
         android:textColor="#FFFFFF"
         tools:text="4.5" />
@@ -34,10 +84,10 @@
         android:id="@+id/tvRelease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/ivVideo"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tvTitle"
         android:textColor="#FFFFFF"
         tools:text="Released 2020-05-15" />
 
@@ -45,10 +95,10 @@
         android:id="@+id/tvOverview"
         android:layout_width="574dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rbVoteAverage"
+        android:layout_below="@+id/tvStarInfo"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="-3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="9dp"
         android:layout_toEndOf="@+id/ivVideo"
         android:textColor="#FFFFFF"
@@ -56,10 +106,10 @@
 
     <RatingBar
         android:id="@+id/rbVoteAverage"
-        style="@style/Widget.AppCompat.RatingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvRelease"
+        android:layout_below="@+id/tvTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="1dp"
@@ -69,35 +119,28 @@
         android:saveEnabled="true"
         android:stepSize="0.5" />
 
-    <ImageView
-        android:id="@+id/ivVideo"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/playBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivVideo"
-        android:layout_alignTop="@+id/ivVideo"
-        android:layout_alignEnd="@+id/ivVideo"
-        android:layout_alignBottom="@+id/ivVideo"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="57dp"
-        app:srcCompat="@drawable/play_button" />
+        <ImageView
+            android:id="@+id/playBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/ivVideo"
+            android:layout_alignTop="@+id/ivVideo"
+            android:layout_alignEnd="@+id/ivVideo"
+            android:layout_alignBottom="@+id/ivVideo"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginBottom="57dp"
+            app:srcCompat="@drawable/play_button" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_toEndOf="@+id/ivVideo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        tools:text="Onward" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/ivVideo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            tools:text="Onward" />
 </RelativeLayout>
