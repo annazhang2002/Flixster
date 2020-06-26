@@ -84,9 +84,7 @@
         android:id="@+id/tvRelease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="80dp"
         android:layout_toEndOf="@+id/tvTitle"
         android:textColor="#FFFFFF"
         tools:text="Released 2020-05-15" />

@@ -128,7 +128,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             if (recPaths[i] != null) {
                 Glide.with(this)
                         .load(recPaths[i])
-                        .transform(new RoundedCornersTransformation(30, 10))
+                        .transform(new RoundedCornersTransformation(30, 0))
                         .placeholder(R.drawable.flicks_movie_placeholder)
                         .into(recs[i]);
             }
