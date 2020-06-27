@@ -45,7 +45,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+It was challenging at first to really get the hang of using and understanding the RecyclerView and the Adapters, but after I did more practice with the Reviews I created, I got a better understanding of the whole process. After completing the required stories, I had a really fun time adding a bunch of features to add more information and by calling the database more.
+Additionally, I had never used APIs before, but similarly after a bit more practice, I got the hang of it and was able to not only call the now_playing list, but also others like upcoming and get reviews.
+
 
 ## Open-source libraries used
 
